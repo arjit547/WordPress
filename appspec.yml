@@ -3,13 +3,11 @@ os: linux
 files:
   - source: /
     destination: /var/www/html
-permissions:
-  - object: /var/www/html
-    pattern: "**"
+    overwrite: true
+    permissions:
+      - object: wp-admin/
+        pattern: "**"
 hooks:
   BeforeInstall:
-    - location: upload.sh
-      timeout: 300
-  ApplicationStart:
-    - location: run.sh
-      timeout: 300
+    - location: 
+      runas: root
