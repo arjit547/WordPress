@@ -2,11 +2,13 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/
+    destination: /var/www/html/
 hooks:
-  BeforeInstall: 
+  BeforeInstall:
     - location: upload.sh
       timeout: 300
+      runas: root
   AfterInstall:
     - location: run.sh
       timeout: 300
+      runas: root
