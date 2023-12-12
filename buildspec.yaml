@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+
+  post_build:
+    commands:
+      - apt-get update
+      - apt-get -y install wget
+      - apt-get -y install default-jdk
+      - wget https://github.com/zaproxy/zaproxy/releases/download/v2.11.1/ZAP_2.11.1_Linux.tar.gz
+      - tar -xvf ZAP_2.11.1_Linux.tar.gz
+      - cd ZAP_2.11.1
+
+      # Run ZAP scan and generate report
+      - ./zap.sh -cmd -quickurl https://yopmail.com/en/ -quickprogress -quickout ../zap_report.html
+
+artifacts:
+  files:
+    - zap_report.html
